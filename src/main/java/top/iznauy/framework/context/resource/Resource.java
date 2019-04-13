@@ -8,8 +8,8 @@ package top.iznauy.framework.context.resource;
  */
 public interface Resource {
 
-    char[] getBinaryContext();
+    byte[] getBinaryContext();
 
-    CharSequence getCharSequenceContext();
+    String getStringContext();
 
 }

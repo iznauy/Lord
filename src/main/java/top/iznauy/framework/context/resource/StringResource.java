@@ -15,12 +15,12 @@ public class StringResource implements Resource {
     }
 
     @Override
-    public char[] getBinaryContext() {
-        return content.toCharArray();
+    public byte[] getBinaryContext() {
+        return content.getBytes();
     }
 
     @Override
-    public CharSequence getCharSequenceContext() {
+    public String getStringContext() {
         return content;
     }
 }

@@ -57,7 +57,7 @@ public class DefaultScanner implements Scanner {
     private void addClass(Set<Class<?>> classSet, String packagePath, String packageName, ClassLoader classLoader) {
         File[] files = new File(packagePath).listFiles(
                 e -> (e.isFile() && e.getName().endsWith(".class")) || e.isDirectory());
-        for (File file: files) {
+        for (File file : files) {
             String fileName = file.getName();
             if (file.isFile()) {
                 String className = fileName.substring(0, fileName.lastIndexOf("."));

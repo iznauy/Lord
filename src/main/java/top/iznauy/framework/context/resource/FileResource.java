@@ -23,7 +23,7 @@ public class FileResource implements Resource {
     public byte[] getBinaryContext() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         InputStream in = null;
-        try  {
+        try {
             in = new BufferedInputStream(new FileInputStream(file));
             byte[] buf = new byte[1024];
             int count = 0;

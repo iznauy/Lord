@@ -56,7 +56,7 @@ public class DefaultBeanFactory implements BeanFactory {
     }
 
     protected void generateBeanDefinitions() {
-        for (Class<?> beanClass: this.beanClasses) {
+        for (Class<?> beanClass : this.beanClasses) {
             this.beanDefinitions.put(beanClass, new DefaultBeanDefinition(beanClass));
         }
     }
@@ -73,7 +73,7 @@ public class DefaultBeanFactory implements BeanFactory {
     }
 
     private void instantiationBeans() {
-        for (Map.Entry<Class<?>, BeanDefinition> entry: beanDefinitions.entrySet()) {
+        for (Map.Entry<Class<?>, BeanDefinition> entry : beanDefinitions.entrySet()) {
             BeanDefinition beanDefinition = entry.getValue();
             Class<?> cls = entry.getKey();
             Object bean = beanDefinition.getNewInstance();
@@ -85,13 +85,13 @@ public class DefaultBeanFactory implements BeanFactory {
 
         DependenceInjector injector = new DependenceInjector();
 
-        for (Map.Entry<Class<?>, BeanDefinition> entry: beanDefinitions.entrySet()) {
+        for (Map.Entry<Class<?>, BeanDefinition> entry : beanDefinitions.entrySet()) {
             Class<?> cls = entry.getKey();
             BeanDefinition beanDefinition = entry.getValue();
 
             Set<Class<?>> dependencies = beanDefinition.getDependencies();
             Map<Class<?>, Object> dependenceBeanMap = new HashMap<>();
-            for (Class<?> dependence: dependencies) {
+            for (Class<?> dependence : dependencies) {
                 dependenceBeanMap.put(dependence, beanMap.get(dependence));
             }
 
@@ -101,7 +101,7 @@ public class DefaultBeanFactory implements BeanFactory {
     }
 
     private void executeInitializingMethod() {
-        for (Map.Entry<Class<?>, Object> entry: beanMap.entrySet()) {
+        for (Map.Entry<Class<?>, Object> entry : beanMap.entrySet()) {
             Object obj = entry.getValue();
             if (obj instanceof InitializingBean) {
                 InitializingBean bean = (InitializingBean) obj;
@@ -118,15 +118,17 @@ public class DefaultBeanFactory implements BeanFactory {
 
     @Override
     public void process(BeanDefinitionProcessor beanDefinitionProcessor) {
-        for (Map.Entry<Class<?>, BeanDefinition> entry: beanDefinitions.entrySet()) {
-            BeanDefinition beanDefinition = entry.getValue();
-            beanDefinitionProcessor.process(beanDefinition);
+        if (beanDefinitionProcessor != null) {
+            for (Map.Entry<Class<?>, BeanDefinition> entry : beanDefinitions.entrySet()) {
+                BeanDefinition beanDefinition = entry.getValue();
+                beanDefinition.process(beanDefinitionProcessor);
+            }
         }
     }
 
     @Override // 析构 bean
     public void destroy() {
-        for (Map.Entry<Class<?>, Object> entry: beanMap.entrySet()) {
+        for (Map.Entry<Class<?>, Object> entry : beanMap.entrySet()) {
             Object obj = entry.getValue();
             if (obj instanceof DisposableBean) {
                 DisposableBean bean = (DisposableBean) obj;
@@ -147,7 +149,7 @@ class DependenceInjector {
 
     private void injectFields(Class<?> cls, Object object, Map<Class<?>, Object> beanMap) {
         Field[] fields = cls.getFields();
-        for (Field field: fields) {
+        for (Field field : fields) {
             if (field.isAnnotationPresent(Inject.class)) {
                 Inject inject = field.getAnnotation(Inject.class);
                 Class<?> targetClass = inject.target();
@@ -166,7 +168,7 @@ class DependenceInjector {
 
     private void injectMethods(Class<?> cls, Object object, Map<Class<?>, Object> beanMap) {
         Method[] methods = cls.getMethods();
-        for (Method method: methods) {
+        for (Method method : methods) {
             if (method.isAnnotationPresent(Inject.class)) {
                 Inject inject = method.getAnnotation(Inject.class);
                 Class<?> targetClass = inject.target();

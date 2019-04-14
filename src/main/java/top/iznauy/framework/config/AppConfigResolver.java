@@ -2,7 +2,6 @@ package top.iznauy.framework.config;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +18,7 @@ public class AppConfigResolver {
 
     private static volatile AppConfigResolver INSTANCE;
 
-    private AppConfigResolver () {
+    private AppConfigResolver() {
 
     }
 

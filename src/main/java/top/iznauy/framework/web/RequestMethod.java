@@ -6,7 +6,7 @@ package top.iznauy.framework.web;
  *
  * @author iznauy
  */
-public enum  RequestMethod {
+public enum RequestMethod {
 
     GET,
     POST,

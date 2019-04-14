@@ -1,6 +1,8 @@
 package top.iznauy.framework.core;
 
-import top.iznauy.framework.annotation.Component;
+import top.iznauy.framework.core.bean.BeanDefinition;
+import top.iznauy.framework.core.scanner.ComponentScanner;
+import top.iznauy.framework.core.scanner.Scanner;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,12 +42,12 @@ public class DefaultBeanFactory implements BeanFactory {
     }
 
     protected void scanBeans() {
-        ComponentScanner componentScanner = new ComponentScanner();
-        beanClasses = componentScanner.scanPackage(this.basePackage, this.classLoader);
+        Scanner scanner = new ComponentScanner();
+        beanClasses = scanner.scanPackage(this.basePackage, this.classLoader);
     }
 
     protected void generateBeanDefinitions() {
-        
+
     }
 
     @Override

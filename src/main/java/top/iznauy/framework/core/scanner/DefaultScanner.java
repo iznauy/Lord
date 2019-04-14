@@ -1,7 +1,6 @@
-package top.iznauy.framework.core;
+package top.iznauy.framework.core.scanner;
 
 import lombok.extern.slf4j.Slf4j;
-import top.iznauy.framework.annotation.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +16,9 @@ import java.util.Set;
  * @author iznauy
  */
 @Slf4j
-public class ComponentScanner {
+public class DefaultScanner implements Scanner {
 
-    public ComponentScanner() {
+    public DefaultScanner() {
 
     }
 
@@ -78,7 +77,7 @@ public class ComponentScanner {
     }
 
     protected boolean addClass(Class<?> cls) {
-        return cls.isAnnotationPresent(Component.class);
+        return true;
     }
 
     private void addClass(Set<Class<?>> classSet, String className, ClassLoader classLoader) {

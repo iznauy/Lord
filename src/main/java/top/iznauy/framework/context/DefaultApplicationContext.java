@@ -59,6 +59,7 @@ public class DefaultApplicationContext implements ApplicationContext {
         this.beanFactory.process(aopBeanDefinitionProcessor);
 
         // 初始化 bean
+        beanFactory.constructBeans();
     }
 
     @Override

@@ -57,7 +57,8 @@ public class DefaultBeanFactory implements BeanFactory {
 
     protected void generateBeanDefinitions() {
         for (Class<?> beanClass : this.beanClasses) {
-            this.beanDefinitions.put(beanClass, new DefaultBeanDefinition(beanClass));
+            BeanDefinition beanDefinition = new DefaultBeanDefinition(beanClass);
+            this.beanDefinitions.put(beanClass, beanDefinition);
         }
     }
 

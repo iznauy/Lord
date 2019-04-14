@@ -7,7 +7,6 @@ import top.iznauy.framework.context.resource.FileResourceAccessor;
 import top.iznauy.framework.context.resource.Resource;
 import top.iznauy.framework.context.resource.ResourceAccessor;
 import top.iznauy.framework.core.BeanFactory;
-import top.iznauy.framework.core.ComponentScanner;
 import top.iznauy.framework.core.DefaultBeanFactory;
 
 import javax.servlet.ServletContext;

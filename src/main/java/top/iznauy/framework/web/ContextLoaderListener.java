@@ -21,6 +21,6 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        System.out.println("destroy context");
+        this.destroyWebApplicationContext();
     }
 }

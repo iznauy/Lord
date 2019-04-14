@@ -1,7 +1,5 @@
 package top.iznauy.framework.core;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created on 12/04/2019.
@@ -9,8 +7,12 @@ import java.util.Map;
  *
  * @author iznauy
  */
-public class BeanFactory {
+public interface BeanFactory {
 
-    private static final Map<Class<?>, Object> BEAN_MAP = new HashMap<>();
+    <T> T getBean(Class<T> cls);
+
+    <T> T getBeanByInterface(Class<? super T> cls);
+
+    void destroy();
 
 }

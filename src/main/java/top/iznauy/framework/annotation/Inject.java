@@ -14,4 +14,12 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface Inject {
+
+    /**
+     * 接口注入的时候，指定注入的 bean 的具体名称
+     * 本框架仅仅支持属性注入，没有指明的话，而且提供了多个实现类，就会报错
+     * @return
+     */
+    Class<?> target() default Inject.class;
+
 }

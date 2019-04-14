@@ -6,12 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created on 12/04/2019.
+ * Created on 14/04/2019.
  * Description:
  *
  * @author iznauy
  */
-@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Controller {
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Aspect {
+
+    Class<?>[] value();
+
 }

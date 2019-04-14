@@ -6,12 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created on 12/04/2019.
+ * Created on 14/04/2019.
  * Description:
  *
  * @author iznauy
  */
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Service {
+public @interface Transaction {
 }

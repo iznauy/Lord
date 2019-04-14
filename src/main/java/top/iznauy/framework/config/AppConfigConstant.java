@@ -19,6 +19,6 @@ public interface AppConfigConstant {
     String APP_BASE_PACKAGE = "app.base_package";
 
     String APP_ASSET_PATH = "app.asset_path";
-
+    
 
 }

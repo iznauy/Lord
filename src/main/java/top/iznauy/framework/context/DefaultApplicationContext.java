@@ -7,6 +7,8 @@ import top.iznauy.framework.context.resource.FileResourceAccessor;
 import top.iznauy.framework.context.resource.Resource;
 import top.iznauy.framework.context.resource.ResourceAccessor;
 import top.iznauy.framework.core.BeanFactory;
+import top.iznauy.framework.core.ComponentScanner;
+import top.iznauy.framework.core.DefaultBeanFactory;
 
 import javax.servlet.ServletContext;
 
@@ -45,8 +47,9 @@ public class DefaultApplicationContext implements ApplicationContext {
         AppConfigResolver resolver = AppConfigResolver.getInstance();
         properties = resolver.resolve(appConfigContext); // 配置文件读取完毕
 
+        // 构造 beanFactory
         String appBasePackagePath = properties.getString(AppConfigConstant.APP_BASE_PACKAGE, "");
-
+        beanFactory = new DefaultBeanFactory(appBasePackagePath);
 
     }
 

@@ -15,6 +15,8 @@ public interface BeanFactory {
 
     void process(BeanDefinitionProcessor beanDefinitionProcessor);
 
+    void constructBeans();
+
     void destroy();
 
 }

@@ -1,6 +1,8 @@
 package top.iznauy.framework.core;
 
 
+import top.iznauy.framework.core.bean.BeanDefinitionProcessor;
+
 /**
  * Created on 12/04/2019.
  * Description:
@@ -11,7 +13,7 @@ public interface BeanFactory {
 
     <T> T getBean(Class<T> cls);
 
-    <T> T getBeanByInterface(Class<? super T> cls);
+    void process(BeanDefinitionProcessor beanDefinitionProcessor);
 
     void destroy();
 

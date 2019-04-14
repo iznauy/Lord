@@ -1,6 +1,7 @@
 package top.iznauy.framework.core.bean;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created on 14/04/2019.
@@ -18,6 +19,8 @@ public interface BeanDefinition {
 
     void process(BeanDefinitionProcessor processor);
 
-    List<Class<?>> getDependence();
+    Set<Class<?>> getDependencies();
+
+    void addBeanProxy(BeanProxy beanProxy);
 
 }

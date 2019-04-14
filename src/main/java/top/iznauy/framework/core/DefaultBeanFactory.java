@@ -1,6 +1,9 @@
 package top.iznauy.framework.core;
 
+import com.sun.corba.se.spi.ior.ObjectKey;
 import top.iznauy.framework.core.bean.BeanDefinition;
+import top.iznauy.framework.core.bean.BeanDefinitionProcessor;
+import top.iznauy.framework.core.bean.DefaultBeanDefinition;
 import top.iznauy.framework.core.scanner.ComponentScanner;
 import top.iznauy.framework.core.scanner.Scanner;
 
@@ -25,16 +28,20 @@ public class DefaultBeanFactory implements BeanFactory {
 
     private Map<Class<?>, BeanDefinition> beanDefinitions = new HashMap<>();
 
+    private Map<Class<?>, Object> beanMap = new HashMap<>();
+
     public DefaultBeanFactory(String basePackage) {
         this.basePackage = basePackage;
         init();
     }
 
     private void init() {
+        // 设置 类加载器
         this.classLoader = getClassLoader();
         // 查找有哪些 bean
         scanBeans();
-        //
+        // 构造 bean definitions
+        generateBeanDefinitions();
     }
 
     protected ClassLoader getClassLoader() {
@@ -43,21 +50,27 @@ public class DefaultBeanFactory implements BeanFactory {
 
     protected void scanBeans() {
         Scanner scanner = new ComponentScanner();
-        beanClasses = scanner.scanPackage(this.basePackage, this.classLoader);
+        this.beanClasses = scanner.scanPackage(this.basePackage, this.classLoader);
     }
 
     protected void generateBeanDefinitions() {
-
+        for (Class<?> beanClass: this.beanClasses) {
+            this.beanDefinitions.put(beanClass, new DefaultBeanDefinition(beanClass));
+        }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> cls) {
-        return null;
+        return (T) beanMap.get(cls);
     }
 
     @Override
-    public <T> T getBeanByInterface(Class<? super T> cls) {
-        return null;
+    public void process(BeanDefinitionProcessor beanDefinitionProcessor) {
+        for (Map.Entry<Class<?>, BeanDefinition> entry: beanDefinitions.entrySet()) {
+            BeanDefinition beanDefinition = entry.getValue();
+            beanDefinitionProcessor.process(beanDefinition);
+        }
     }
 
     @Override

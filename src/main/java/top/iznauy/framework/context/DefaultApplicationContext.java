@@ -56,12 +56,12 @@ public class DefaultApplicationContext implements ApplicationContext {
         beanFactory = new DefaultBeanFactory(appBasePackagePath);
 
         // 加载 aop 有关的信息，并且调用 processor，去处理 bean 的定义，生成静态代理
-        AopFactory aopFactory = new DefaultAopFactory(appBasePackagePath);
+        AopFactory aopFactory = new DefaultAopFactory(appBasePackagePath, this);
         BeanDefinitionProcessor aopBeanDefinitionProcessor = aopFactory.getAopBeanDefinitionProcessor();
         this.beanFactory.process(aopBeanDefinitionProcessor);
 
         // 加载事务
-        TransactionFactory transactionFactory = new DefaultTransactionFactory(appBasePackagePath);
+        TransactionFactory transactionFactory = new DefaultTransactionFactory(appBasePackagePath, this);
         BeanDefinitionProcessor transactionBeanDefinitionProcessor = transactionFactory.getTransactionBeanDefinitionProcessor();
         this.beanFactory.process(transactionBeanDefinitionProcessor);
 

@@ -1,6 +1,7 @@
 package top.iznauy.framework.aop;
 
 import top.iznauy.framework.annotation.Aspect;
+import top.iznauy.framework.context.ApplicationContext;
 import top.iznauy.framework.core.scanner.Scanner;
 
 import java.util.HashMap;
@@ -20,12 +21,15 @@ public class DefaultAopFactory implements AopFactory {
 
     private ClassLoader classLoader;
 
+    private ApplicationContext applicationContext;
+
     private Set<Class<?>> aspectClasses = new HashSet<>();
 
     private Map<Class<?>, Class<?>[]> targetMap = new HashMap<>();
 
-    public DefaultAopFactory(String basePackage) {
+    public DefaultAopFactory(String basePackage, ApplicationContext applicationContext) {
         this.basePackage = basePackage;
+        this.applicationContext = applicationContext;
         this.init();
     }
 

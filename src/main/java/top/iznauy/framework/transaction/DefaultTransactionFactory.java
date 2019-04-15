@@ -1,5 +1,6 @@
 package top.iznauy.framework.transaction;
 
+import top.iznauy.framework.context.ApplicationContext;
 import top.iznauy.framework.core.scanner.Scanner;
 
 import java.util.HashSet;
@@ -15,14 +16,17 @@ public class DefaultTransactionFactory implements TransactionFactory {
 
     private String basePackage;
 
+    private ApplicationContext applicationContext;
+
     private ClassLoader classLoader;
 
     private Set<Class<?>> transactionClasses = new HashSet<>();
 
     private TransactionManager transactionManager;
 
-    public DefaultTransactionFactory(String basePackage) {
+    public DefaultTransactionFactory(String basePackage, ApplicationContext applicationContext) {
         this.basePackage = basePackage;
+        this.applicationContext = applicationContext;
         this.init();
     }
 

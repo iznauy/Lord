@@ -1,7 +1,7 @@
 package top.iznauy.framework.context;
 
-import top.iznauy.framework.aop.AopManager;
-import top.iznauy.framework.aop.DefaultAopManager;
+import top.iznauy.framework.aop.AopFactory;
+import top.iznauy.framework.aop.DefaultAopFactory;
 import top.iznauy.framework.config.AppConfigConstant;
 import top.iznauy.framework.config.AppConfigResolver;
 import top.iznauy.framework.config.PropertiesWrapper;
@@ -11,6 +11,8 @@ import top.iznauy.framework.context.resource.ResourceAccessor;
 import top.iznauy.framework.core.BeanFactory;
 import top.iznauy.framework.core.DefaultBeanFactory;
 import top.iznauy.framework.core.bean.BeanDefinitionProcessor;
+import top.iznauy.framework.transaction.DefaultTransactionFactory;
+import top.iznauy.framework.transaction.TransactionFactory;
 
 import javax.servlet.ServletContext;
 
@@ -54,9 +56,14 @@ public class DefaultApplicationContext implements ApplicationContext {
         beanFactory = new DefaultBeanFactory(appBasePackagePath);
 
         // 加载 aop 有关的信息，并且调用 processor，去处理 bean 的定义，生成静态代理
-        AopManager aopManager = new DefaultAopManager(appBasePackagePath);
-        BeanDefinitionProcessor aopBeanDefinitionProcessor = aopManager.getAopBeanDefinitionProcessor();
+        AopFactory aopFactory = new DefaultAopFactory(appBasePackagePath);
+        BeanDefinitionProcessor aopBeanDefinitionProcessor = aopFactory.getAopBeanDefinitionProcessor();
         this.beanFactory.process(aopBeanDefinitionProcessor);
+
+        // 加载事务
+        TransactionFactory transactionFactory = new DefaultTransactionFactory(appBasePackagePath);
+        BeanDefinitionProcessor transactionBeanDefinitionProcessor = transactionFactory.getTransactionBeanDefinitionProcessor();
+        this.beanFactory.process(transactionBeanDefinitionProcessor);
 
         // 初始化 bean
         beanFactory.constructBeans();

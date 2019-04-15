@@ -6,7 +6,7 @@ package top.iznauy.framework.aop;
  *
  * @author iznauy
  */
-public interface AopManager {
+public interface AopFactory {
 
     AopBeanDefinitionProcessor getAopBeanDefinitionProcessor();
 

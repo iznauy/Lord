@@ -22,4 +22,6 @@ public interface ApplicationContext {
 
     BeanFactory getBeanFactory();
 
+    <T> T getBean(Class<T> cls);
+
 }

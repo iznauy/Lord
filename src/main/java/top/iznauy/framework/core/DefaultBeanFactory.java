@@ -70,7 +70,6 @@ public class DefaultBeanFactory implements BeanFactory {
         injectDependencies();
         // 然后执行初始化方法
         executeInitializingMethod();
-
     }
 
     private void instantiationBeans() {

@@ -1,6 +1,6 @@
 package top.iznauy.framework.annotation;
 
-import top.iznauy.framework.web.RequestMethod;
+import top.iznauy.framework.web.entity.RequestMethod;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

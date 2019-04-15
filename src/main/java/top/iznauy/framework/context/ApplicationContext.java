@@ -10,7 +10,7 @@ import top.iznauy.framework.core.BeanFactory;
  */
 public interface ApplicationContext {
 
-    String ROOT_WEB_APP_CONTEXT_ATTRIBUTE = ApplicationContext.class.getName() + ".ROOT";
+    String ROOT_WEB_APP_CONTEXT_ATTRIBUTE = "iznauy";
 
     String CONFIG_FILE_ATTRIBUTE = "contextConfigLocation";
 

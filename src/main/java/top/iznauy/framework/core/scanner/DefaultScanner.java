@@ -37,7 +37,6 @@ public class DefaultScanner implements Scanner {
         Set<Class<?>> classSet = new HashSet<>();
         try {
             Enumeration<URL> urls = loader.getResources(basePackage.replace('.', '/'));
-            System.out.println("base package:" + basePackage);
             while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
                 System.out.println(url.getPath());

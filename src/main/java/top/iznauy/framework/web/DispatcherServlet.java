@@ -17,10 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created on 14/04/2019.
@@ -77,10 +79,10 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     protected void constructHandlerMapping() {
-        for (Class<?> cls: controllerClasses) {
+        for (Class<?> cls : controllerClasses) {
             Object controller = this.applicationContext.getBean(cls);
             Method[] methods = cls.getMethods();
-            for (Method method: methods) {
+            for (Method method : methods) {
                 if (method.isAnnotationPresent(Action.class)) {
                     Action action = method.getAnnotation(Action.class);
                     RequestMethod requestMethod = action.method();

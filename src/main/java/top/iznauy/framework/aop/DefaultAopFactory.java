@@ -47,7 +47,7 @@ public class DefaultAopFactory implements AopFactory {
     }
 
     protected void constructTargetMap() {
-        for (Class<?> aspectClass: aspectClasses) {
+        for (Class<?> aspectClass : aspectClasses) {
             Aspect aspect = aspectClass.getAnnotation(Aspect.class);
             Class<?>[] targets = aspect.value();
             targetMap.put(aspectClass, targets);

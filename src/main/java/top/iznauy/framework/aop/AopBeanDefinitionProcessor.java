@@ -24,12 +24,12 @@ public class AopBeanDefinitionProcessor implements BeanDefinitionProcessor {
 
     // aspect to target class
     public AopBeanDefinitionProcessor(Map<Class<?>, Class<?>[]> rawMap) {
-        for (Map.Entry<Class<?>, Class<?>[]> entry: rawMap.entrySet()) {
+        for (Map.Entry<Class<?>, Class<?>[]> entry : rawMap.entrySet()) {
             Class<?> proxyClass = entry.getKey();
             Class<?>[] targetClasses = entry.getValue();
             try {
                 BeanProxy beanProxy = (BeanProxy) proxyClass.newInstance();
-                for (Class<?> targetClass: targetClasses) {
+                for (Class<?> targetClass : targetClasses) {
                     if (targetClass.isAnnotationPresent(Component.class)) {
                         List<BeanProxy> proxyList = this.targetProxyMap.getOrDefault(targetClass, Collections.emptyList());
                         proxyList.add(beanProxy);
@@ -48,7 +48,7 @@ public class AopBeanDefinitionProcessor implements BeanDefinitionProcessor {
     public void process(BeanDefinition beanDefinition) {
         Class<?> cls = beanDefinition.getBeanClass();
         List<BeanProxy> proxyList = targetProxyMap.getOrDefault(cls, Collections.emptyList());
-        for (BeanProxy beanProxy: proxyList) {
+        for (BeanProxy beanProxy : proxyList) {
             beanDefinition.addBeanProxy(beanProxy);
         }
     }

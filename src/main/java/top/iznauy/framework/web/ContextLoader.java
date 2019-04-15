@@ -24,7 +24,7 @@ public class ContextLoader {
     void initWebApplicationContext(ServletContext servletContext) {
         servletContext.log("Initializing Lord Application Context");
         applicationContext = new DefaultApplicationContext(servletContext);
-        servletContext.setAttribute(ApplicationContext.ROOT_WEB_APP_CONTEXT_ATTRIBUTE, servletContext);
+        servletContext.setAttribute(ApplicationContext.ROOT_WEB_APP_CONTEXT_ATTRIBUTE, applicationContext);
     }
 
     void destroyWebApplicationContext() {

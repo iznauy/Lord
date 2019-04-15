@@ -22,11 +22,11 @@ import java.util.Map;
 @Slf4j
 public class RequestParamResolver {
 
+    private static RequestParamResolver instance;
+
     private RequestParamResolver() {
 
     }
-
-    private static RequestParamResolver instance;
 
     public static RequestParamResolver getInstance() {
         if (instance == null) {
@@ -46,7 +46,7 @@ public class RequestParamResolver {
         InputStream in = req.getInputStream();
         String body = decodeURL(getString(in));
         String[] params = body.split("&");
-        for (String param: params) {
+        for (String param : params) {
             String[] array = param.split("=");
             if (array.length == 2) {
                 String paramName = array[0];

@@ -19,7 +19,7 @@ public class ControllerScanner extends DefaultScanner {
         if (!cls.isAnnotationPresent(Component.class))
             return false;
         Method[] methods = cls.getMethods();
-        for (Method method: methods) {
+        for (Method method : methods) {
             if (method.isAnnotationPresent(Action.class))
                 return true;
         }

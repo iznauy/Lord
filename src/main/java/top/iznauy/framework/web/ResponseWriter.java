@@ -12,11 +12,11 @@ import java.io.PrintWriter;
  */
 public class ResponseWriter {
 
+    private static ResponseWriter instance;
+
     private ResponseWriter() {
 
     }
-
-    private static ResponseWriter instance;
 
     public static ResponseWriter getInstance() {
         if (instance == null) {
@@ -29,7 +29,12 @@ public class ResponseWriter {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.write(JsonUtil.toJson(result));
+        if (result instanceof String) {
+            String res = (String) result;
+            writer.write(res);
+        } else {
+            writer.write(JsonUtil.toJson(result));
+        }
         writer.flush();
         writer.close();
     }

@@ -16,16 +16,14 @@ import java.lang.reflect.Method;
 @Slf4j
 public class TransactionBeanProxy implements BeanProxy {
 
-
+    // 是否已经开启 transaction
+    // 相当于 Spring 中的 PROPAGATION_REQUIRED 这种传播级别
+    private final ThreadLocal<Boolean> flagHolder = ThreadLocal.withInitial(() -> false);
     private TransactionManager transactionManager;
 
     public TransactionBeanProxy(TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
-
-    // 是否已经开启 transaction
-    // 相当于 Spring 中的 PROPAGATION_REQUIRED 这种传播级别
-    private final ThreadLocal<Boolean> flagHolder = ThreadLocal.withInitial(() -> false);
 
     @Override
     public Object doProxy(BeanProxyChain proxyChain) throws Throwable {

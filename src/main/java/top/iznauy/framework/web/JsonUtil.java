@@ -1,5 +1,6 @@
 package top.iznauy.framework.web;
 
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,12 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class JsonUtil {
 
+    private static final Gson gson = new Gson();
+
 
     public static <T> String toJson(T obj) {
-        return "";
+        return gson.toJson(obj);
     }
 
     public static <T> T fromJson(String json, Class<T> type) {
-        return null;
+        return gson.fromJson(json, type);
     }
 }

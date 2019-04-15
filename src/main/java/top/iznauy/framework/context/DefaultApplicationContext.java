@@ -26,7 +26,7 @@ public class DefaultApplicationContext implements ApplicationContext {
 
     private PropertiesWrapper properties = null;
 
-    private ServletContext servletContext;
+    private volatile ServletContext servletContext;
 
     private ResourceAccessor resourceAccessor;
 

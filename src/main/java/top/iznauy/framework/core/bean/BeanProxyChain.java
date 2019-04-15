@@ -64,8 +64,8 @@ public class BeanProxyChain {
     public Object doProxyChain() throws Throwable {
         Object methodResult;
         if (proxyIndex < beanProxies.size()) {
-            methodResult = beanProxies.get(proxyIndex).doProxy(this);
             proxyIndex++;
+            methodResult = beanProxies.get(proxyIndex - 1).doProxy(this);
         } else {
             methodResult = methodProxy.invokeSuper(targetObject, methodParams);
         }

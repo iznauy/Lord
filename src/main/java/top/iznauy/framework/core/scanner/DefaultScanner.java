@@ -39,7 +39,6 @@ public class DefaultScanner implements Scanner {
             Enumeration<URL> urls = loader.getResources(basePackage.replace('.', '/'));
             while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
-                System.out.println(url.getPath());
                 String protocol = url.getProtocol();
                 if (protocol.equals("file")) {
                     String packagePath = url.getPath();

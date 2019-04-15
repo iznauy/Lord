@@ -6,10 +6,7 @@ import top.iznauy.framework.core.bean.BeanDefinition;
 import top.iznauy.framework.core.bean.BeanDefinitionProcessor;
 import top.iznauy.framework.core.bean.BeanProxy;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created on 14/04/2019.
@@ -31,13 +28,16 @@ public class AopBeanDefinitionProcessor implements BeanDefinitionProcessor {
                 BeanProxy beanProxy = (BeanProxy) proxyClass.newInstance();
                 for (Class<?> targetClass : targetClasses) {
                     if (targetClass.isAnnotationPresent(Component.class)) {
-                        List<BeanProxy> proxyList = this.targetProxyMap.getOrDefault(targetClass, Collections.emptyList());
+                        List<BeanProxy> proxyList = this.targetProxyMap.get(targetClass);
+                        if (proxyList == null)
+                            proxyList = new ArrayList<>();
                         proxyList.add(beanProxy);
                         this.targetProxyMap.put(targetClass, proxyList);
                     }
                 }
             } catch (Exception e) {
                 log.error("init bean proxy error", e);
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
 

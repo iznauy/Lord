@@ -95,7 +95,7 @@ public class DefaultBeanFactory implements BeanFactory {
                 dependenceBeanMap.put(dependence, beanMap.get(dependence));
             }
 
-            Object bean = beanDefinition.getNewInstance();
+            Object bean = beanMap.get(cls);
             injector.inject(cls, bean, dependenceBeanMap);
         }
     }

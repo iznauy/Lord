@@ -125,6 +125,7 @@ public class DispatcherServlet extends HttpServlet {
                     result = handlerMethod.invoke(controller, param);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 log.error("incorrect method invoke", e);
+                e.printStackTrace();
                 resp.setStatus(400);
                 return;
             }

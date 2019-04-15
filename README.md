@@ -1,4 +1,9 @@
 # Lord
+
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
+
+
 Lord 是一个轻量级的 Java Web 框架。
 
 项目的范围：
@@ -21,3 +26,9 @@ Lord 是一个轻量级的 Java Web 框架。
 
 
 目前**基本**能用，不过 Bug **比较多**，功能也在进一步的完善中。
+
+
+
+## License
+
+Anti 996-License-1.0
